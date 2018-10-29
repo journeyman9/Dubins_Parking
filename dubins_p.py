@@ -21,16 +21,18 @@ x1 = np.random.randint(-200, 200)
 y1 = np.random.randint(-200, 200)
 psi_1 = np.radians(np.random.randint(0, 360))
 
-q0 = [x0, y0, psi_0]
-qg = [x1, y1, psi_1]
+#q0 = [x0, y0, psi_0]
+#qg = [x1, y1, psi_1]
+q0 = [183.0,199.0, 2.8797932657906435]
+qg = [149.0,-142.0, 0.19198621771937624]
 
 turning_radius = 13.176
 step_size = 0.05
 
 ## Modify dubins to work for a straight offset from goal
 q1 = qg.copy()
-q1[0] -= turning_radius * np.cos(q1[2])
-q1[1] -= turning_radius * np.sin(q1[2])
+q1[0] -= 2 * turning_radius * np.cos(q1[2])
+q1[1] -= 2 * turning_radius * np.sin(q1[2])
 
 # Dubins
 path = dubins.shortest_path(q0, q1, turning_radius)
