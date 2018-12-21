@@ -25,12 +25,12 @@ class DubinsPark:
 
     def generate(self):
         ## Randomize starting and goal poses
-        x0 = np.random.randint(-200, 200)
-        y0 = np.random.randint(-200, 200)
+        x0 = np.random.randint(-40, 40)
+        y0 = np.random.randint(-40, 40)
         psi_0 = np.radians(np.random.randint(0, 360))
 
-        x1 = np.random.randint(-200, 200)
-        y1 = np.random.randint(-200, 200)
+        x1 = np.random.randint(-40, 40)
+        y1 = np.random.randint(-40, 40)
         psi_1 = np.radians(np.random.randint(0, 360))
 
         self.q0 = [x0, y0, psi_0]
@@ -38,8 +38,8 @@ class DubinsPark:
 
         ## Modify dubins to work for a straight offset from goal
         self.q1 = self.qg.copy()
-        self.q1[0] -= self.turning_radius * np.cos(self.q1[2])
-        self.q1[1] -= self.turning_radius * np.sin(self.q1[2])
+        self.q1[0] -= 2 * self.turning_radius * np.cos(self.q1[2])
+        self.q1[1] -= 2 * self.turning_radius * np.sin(self.q1[2])
 
         # Dubins
         path = dubins.shortest_path(self.q0, self.q1, self.turning_radius)
@@ -72,6 +72,8 @@ class DubinsPark:
         self.x = qs[:, 0]
         self.y = qs[:, 1]
         self.psi = qs[:, 2]
+        return np.column_stack([self.x, self.y, self.curv, self.psi, 
+                        self.dist])
 
     def display(self, plot_number=None):
         ## Plot again to make sure

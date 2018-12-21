@@ -23,8 +23,8 @@ psi_1 = np.radians(np.random.randint(0, 360))
 
 #q0 = [x0, y0, psi_0]
 #qg = [x1, y1, psi_1]
-q0 = [183.0,199.0, 2.8797932657906435]
-qg = [149.0,-142.0, 0.19198621771937624]
+q0 = [200, 200, np.pi]
+qg = [0, 0, np.pi]
 
 turning_radius = 13.176
 step_size = 0.05
